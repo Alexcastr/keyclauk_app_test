@@ -1,16 +1,22 @@
 'use client';
-import { signIn } from 'next-auth/react';
-// import { useSession } from "next-auth/react";
-export default function Login() {
-  // const { data: session } = useSession();
+import { cn } from '@/app/utils/utils';
+import { signIn, useSession } from 'next-auth/react';
+import { Loader } from '@/components/ui/Loader';
 
-  // console.log("session", session);
+export default function Login({ className }: { className?: string }) {
+  const { status } = useSession();
+
   return (
     <button
-    className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+      className={cn(
+        'block px-4 w-full py-2 text-sm text-gray-700 group-hover:text-gray-100',
+        status === 'loading' && 'cursor-not-allowed ',
+        className
+      )}
       onClick={() => signIn('keycloak')}
+      disabled={status === 'loading'}
     >
-      Iniciar
+      {status === 'loading' ? <Loader /> : 'Iniciar'}
     </button>
   );
 }

@@ -1,6 +1,6 @@
 import Login from "./Login";
 import Image from "next/image";
-import homeImage from '@/app/public/home-page.webp';
+import homeImage from '../../public/home-page.webp';
 
 export default function Welcome() {
   return (
@@ -20,7 +20,7 @@ export default function Welcome() {
         <p className="mt-3 text-xl text-white">
         Accede a contenido exclusivo y descubre los mejores análisis. Inicia sesión para comenzar
         </p>
-       <Login />
+       <Login className="text-white text-xl w-fit font-bold hover:text-black hover:scale-110 transition-all duration-200 border border-indigo-900 rounded-full"/>
       </div>
     </div>
   )

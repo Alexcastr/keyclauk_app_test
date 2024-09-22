@@ -1,7 +1,7 @@
 "use client"
 import { useSession,  signOut } from "next-auth/react";
 import { useEffect } from "react";
-
+import { cn } from '@/app/utils/utils';
 async function keycloakSessionLogOut() {
     try {
       await fetch(`/api/auth/logout`, { method: "GET" });
@@ -9,25 +9,30 @@ async function keycloakSessionLogOut() {
       console.error(err);
     }
   }
-export default function Logout() {
-
-  const { data: session, status } = useSession(); 
+export default function Logout({className}: {className?: string}) {
+  const { data: session, status } = useSession();
 
   useEffect(() => {
-    
     if (
-      status != "loading" &&
+      status != 'loading' &&
       session &&
-      session?.error === "RefreshAccessTokenError"
+      session?.error === 'RefreshAccessTokenError'
     ) {
-      signOut({ callbackUrl: "/" });
+      signOut({ callbackUrl: '/' });
     }
   }, [session, status]);
-  return <button 
-  className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
-  onClick={() => {
-    keycloakSessionLogOut().then(() => signOut({ callbackUrl: "/" }));
-  }}>
-    Signout
-  </button>
+  return (
+    <button
+      className={cn(
+        'block px-4 py-2 w-full text-sm text-gray-700 group-hover:text-gray-100',
+        className
+      )}
+      onClick={() => {
+        keycloakSessionLogOut().then(() => signOut({ callbackUrl: '/' }));
+      }}
+      disabled={status === 'loading'}
+    >
+      Cerrar sesión
+    </button>
+  );
 }

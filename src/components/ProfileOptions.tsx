@@ -1,11 +1,11 @@
 'use client';
-import { useSession, signOut } from 'next-auth/react';
-import { authOptions } from '@/app/constants/constants';
+import { useSession, } from 'next-auth/react';
+import { authToggleOptions } from '@/app/constants/constants';
 import Logout from '@/components/Logout';
 import Login from './Login';
 
 export const ProfileOptions = ({
-  name,
+  
   type
 }: {
   name: string;
@@ -14,14 +14,14 @@ export const ProfileOptions = ({
   const { data: session, status } = useSession();
 
   if (status === 'loading') {
-    return <div>Loading...</div>;
+    return <div className="block px-3 py-2 text-sm bg-gray-200 animate-pulse"></div>
   }
 
-  if (session && type === authOptions.LOGIN) {
+  if (session && type === authToggleOptions.LOGIN) {
     return null;
   }
 
-  if(!session && type === authOptions.LOGOUT) {
+  if(!session && type === authToggleOptions.LOGOUT) {
     return null;
   }
 
