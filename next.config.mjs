@@ -12,7 +12,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'tailwindui.com',
         port: '',
-        pathname: '/img/logos/**' // Permitir cualquier logo desde Tailwind UI
+        pathname: '/img/**' // Permitir cualquier logo desde Tailwind UI
       }
     ]
   }

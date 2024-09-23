@@ -41,8 +41,8 @@ export const ActiveLink: FC<Props> = ({ children, href, className="" }) => {
           '',
           pathname === href
             ? `border-indigo-500 text-indigo-600 text-indigo-500`
-            : `border-transparent text-gray-300 hover:border-gray-100 hover:text-gray-700`,
-           ' group inline-flex items-center border-b-2 px-1 py-4 text-sm font-medium ',
+            : `border-transparent text-gray-300 hover:border-gray-100 hover:text-gray-100`,
+           ' group inline-flex items-center border-b-2 px-1 py-4 text-lg font-medium ',
           className
         )}
       >

@@ -2,11 +2,16 @@
 import { useSession,  signOut } from "next-auth/react";
 import { useEffect } from "react";
 import { cn } from '@/app/utils/utils';
+import { toast } from "sonner";
+
+
 async function keycloakSessionLogOut() {
     try {
       await fetch(`/api/auth/logout`, { method: "GET" });
+      toast.success("Sesión cerrada");
     } catch (err) {
       console.error(err);
+      toast.error("Error al cerrar sesión");
     }
   }
 export default function Logout({className}: {className?: string}) {
